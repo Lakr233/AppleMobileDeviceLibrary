@@ -1,0 +1,11 @@
+build/
+.DS_Store
+src.version
+/AppleMobileDeviceLibrary/
+version.lock.txt
+*.zip
+*.tar
+.build/
+.swiftpm/
+.DS_Store
+binpack*

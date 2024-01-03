@@ -9,3 +9,4 @@ version.lock.txt
 .swiftpm/
 .DS_Store
 binpack*
+*.xcuserstate

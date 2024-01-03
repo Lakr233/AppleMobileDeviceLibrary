@@ -8,51 +8,74 @@ WORKING_DIR=$2  # store repos
 mkdir -p $BUILD_PREFIX || true
 mkdir -p $WORKING_DIR || true
 
+while true; do
+    if [ -d .git ]; then
+        break
+    fi
+    cd ..
+done
+ROOT_DIR=$(pwd)
+
 cd $WORKING_DIR
 
 export PKG_CONFIG_PATH=$BUILD_PREFIX/lib/pkgconfig
 
-git clone https://github.com/openssl/openssl || true
+function prepare_repo() {
+    git clean -fdx -f -q
+    git reset --hard -q
+
+    TAG=$(git describe --tags --exact-match HEAD 2> /dev/null || git rev-parse --short HEAD)
+    echo "[*] building $(basename $PWD): $TAG" >&2
+
+    $ROOT_DIR/Scripts/build.apply.addons.sh $ROOT_DIR/Addons/$(basename $PWD) $PWD
+}
+
+if [ ! -d "$WORKING_DIR/openssl" ]; then
+    git clone https://github.com/openssl/openssl
+fi
 pushd openssl
-git clean -fdx
-git reset --hard
-git checkout $(wget -q -O- https://api.github.com/repos/openssl/openssl/releases/latest | jq -r '.tag_name')
+git checkout $(wget -q -O- https://api.github.com/repos/openssl/openssl/releases/latest | jq -r '.tag_name') -q
+prepare_repo
 ./config --prefix=$BUILD_PREFIX -no-shared no-tests 1> /dev/null
 make -j$(nproc)
 make install_sw
 popd
 
-git clone https://github.com/libimobiledevice/libplist || true
+if [ ! -d "$WORKING_DIR/libplist" ]; then
+    git clone https://github.com/libimobiledevice/libplist || true
+fi
 pushd libplist
-git clean -fdx
-git reset --hard
+prepare_repo
 ./autogen.sh --prefix=$BUILD_PREFIX --enable-shared=no --enable-static=yes
 make -j$(nproc)
 make install
 popd
 
-git clone https://github.com/libimobiledevice/libimobiledevice-glue || true
+if [ ! -d "$WORKING_DIR/libimobiledevice-glue" ]; then
+    git clone https://github.com/libimobiledevice/libimobiledevice-glue || true
+fi
 pushd libimobiledevice-glue
-git clean -fdx
-git reset --hard
+prepare_repo
 ./autogen.sh --prefix=$BUILD_PREFIX --enable-shared=no --enable-static=yes
 make -j$(nproc)
 make install
 popd
 
-git clone https://github.com/libimobiledevice/libusbmuxd || true
+if [ ! -d "$WORKING_DIR/libusbmuxd" ]; then
+    git clone https://github.com/libimobiledevice/libusbmuxd || true
+fi
 pushd libusbmuxd
-git clean -fdx
-git reset --hard
+prepare_repo
 ./autogen.sh --prefix=$BUILD_PREFIX --enable-shared=no --enable-static=yes
 make -j$(nproc)
 make install
 popd
 
-git clone https://github.com/libimobiledevice/libimobiledevice || true
+if [ ! -d "$WORKING_DIR/libimobiledevice" ]; then
+    git clone https://github.com/libimobiledevice/libimobiledevice || true
+fi
 pushd libimobiledevice
-git clean -fdx
-git reset --hard
+prepare_repo
 ./autogen.sh --prefix=$BUILD_PREFIX --enable-shared=no --enable-static=yes
 make -j$(nproc)
 make install

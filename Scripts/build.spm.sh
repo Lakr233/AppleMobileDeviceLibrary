@@ -121,7 +121,7 @@ for XCFRAMEWORK in BinaryTargets/*.zip; do
     FRAMEWORK_NAME=$(basename $XCFRAMEWORK .zip)
     EMBEDDED_NAME=$(basename $FRAMEWORK_NAME .xcframework)
 
-    STUB_SWIFT_FILE+="import $EMBEDDED_NAME"
+    STUB_SWIFT_FILE+="@_exported import $EMBEDDED_NAME"
     STUB_SWIFT_FILE+=$'\n'
 done
 

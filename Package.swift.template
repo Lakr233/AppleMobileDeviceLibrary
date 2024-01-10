@@ -13,18 +13,21 @@ let package = Package(
             targets: ["AppleMobileDeviceLibrary"]
         ),
     ],
+    dependencies: [
+        .package(name: "OpenSSL", url: "https://github.com/Lakr233/openssl-spm.git", from: "3.2.0"),
+    ],
     targets: [
         .target(name: "AppleMobileDeviceLibrary", dependencies: [
             "libimobiledevice",
             "libimobiledevice_glue",
             "libplist",
-            "libssl",
             "libusbmuxd",
+            "OpenSSL",
         ]),
         .binaryTarget(name: "libimobiledevice", url: "https://github.com/__REPO__/releases/download/__TAG__/libimobiledevice.xcframework.zip", checksum: "__CHECKSUM_libimobiledevice__"),
         .binaryTarget(name: "libimobiledevice_glue", url: "https://github.com/__REPO__/releases/download/__TAG__/libimobiledevice_glue.xcframework.zip", checksum: "__CHECKSUM_libimobiledevice_glue__"),
         .binaryTarget(name: "libplist", url: "https://github.com/__REPO__/releases/download/__TAG__/libplist.xcframework.zip", checksum: "__CHECKSUM_libplist__"),
-        .binaryTarget(name: "libssl", url: "https://github.com/__REPO__/releases/download/__TAG__/libssl.xcframework.zip", checksum: "__CHECKSUM_libssl__"),
         .binaryTarget(name: "libusbmuxd", url: "https://github.com/__REPO__/releases/download/__TAG__/libusbmuxd.xcframework.zip", checksum: "__CHECKSUM_libusbmuxd__"),
     ]
 )
+

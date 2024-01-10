@@ -11,6 +11,9 @@ mkdir -p $WORKING_DIR || true
 cd $WORKING_DIR
 
 export PKG_CONFIG_PATH=$BUILD_PREFIX/lib/pkgconfig
+export CFLAGS="-mmacosx-version-min=10.13"
+export CPPFLAGS="-mmacosx-version-min=10.13"
+export LDFLAGS="-mmacosx-version-min=10.13"
 
 git clone https://github.com/openssl/openssl || true
 pushd openssl

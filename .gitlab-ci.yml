@@ -1,18 +1,18 @@
-image: ghcr.io/cirruslabs/macos-sonoma-xcode:15.1
+image: ghcr.io/cirruslabs/macos-sonoma-xcode:15.3
 
 variables:
   HOMEBREW_NO_AUTO_UPDATE: 1
 
 stages:
-- CompileFramework
-- TestFrameworkBuild
+  - CompileFramework
+  - TestFrameworkBuild
 
 CompileFramework:
   tags:
     - xcode
   only:
     variables:
-    - $CI_PIPELINE_SOURCE == "web"
+      - $CI_PIPELINE_SOURCE == "web"
   stage: CompileFramework
   script:
     - brew install libtool autoconf automake pkgconfig coreutils bash zip swiftformat
@@ -22,15 +22,15 @@ CompileFramework:
     - mv src.version AppleMobileDeviceLibrary/.version
   artifacts:
     paths:
-    - AppleMobileDeviceLibrary
-    - binpack.tar
+      - AppleMobileDeviceLibrary
+      - binpack.tar
 
 TestFrameworkBuild:
   tags:
     - xcode
   only:
     variables:
-    - $CI_PIPELINE_SOURCE == "web"
+      - $CI_PIPELINE_SOURCE == "web"
   stage: TestFrameworkBuild
   script:
     - cd AppleMobileDeviceLibrary

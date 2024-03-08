@@ -10,9 +10,6 @@ stages:
 CompileFramework:
   tags:
     - xcode
-  only:
-    variables:
-      - $CI_PIPELINE_SOURCE == "web"
   stage: CompileFramework
   script:
     - brew install libtool autoconf automake pkgconfig coreutils bash zip swiftformat
@@ -28,9 +25,6 @@ CompileFramework:
 TestFrameworkBuild:
   tags:
     - xcode
-  only:
-    variables:
-      - $CI_PIPELINE_SOURCE == "web"
   stage: TestFrameworkBuild
   script:
     - cd AppleMobileDeviceLibrary

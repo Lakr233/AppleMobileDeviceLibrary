@@ -11,25 +11,28 @@ jobs:
     steps:
       - name: Checkout Source Code
         uses: actions/checkout@v4.1.1
+
+      - name: Build Artifacts
+        run: |
+          brew install libtool autoconf automake pkgconfig coreutils bash zip swiftformat
+          ./Scripts/build.sh clean
+          mv build/build.spm/ AppleMobileDeviceLibrary
+          mv build/build.binpack/binpack.tar .
+          mv src.version AppleMobileDeviceLibrary/.version
+          cat binpack.tar | gzip > binpack.tar.gz
+
+      # now we have AppleMobileDeviceLibrary and binpack.tar.gz at the root of the repository
+
       - name: Fetch Lastest Release
         uses: robinraju/release-downloader@v1.8
         with:
           latest: true
           fileName: "version.lock.txt"
         continue-on-error: true
-      - name: Fetch Upstream Artifacts
-        run: |
-          python3 -m pip install python-gitlab
-          ./Scripts/action.download.py ./artifacts.zip
-          unzip artifacts.zip
-          rm artifacts.zip
-          cat binpack.tar | gzip > binpack.tar.gz
-        env:
-          GITLAB_ENDPOINT: ${{ secrets.GITLAB_ENDPOINT }}
-          GITLAB_TOKEN: ${{ secrets.GITLAB_TOKEN }}
-          GITLAB_PROJECT_ID: ${{ secrets.GITLAB_PROJECT_ID }}
-          ARTIFACT_NAME: ${{ secrets.ARTIFACT_NAME }}
-      - name: Compare Version # if "version.lock.txt" is equal to "AppleMobileDeviceLibrary/.version" then skip all sub steps
+
+      # if "version.lock.txt" is equal to "AppleMobileDeviceLibrary/.version" then skip all sub steps
+
+      - name: Compare Version
         run: |
           if [ -f version.lock.txt ] && [ -f AppleMobileDeviceLibrary/.version ]; then
             if [ "$(cat version.lock.txt)" == "$(cat AppleMobileDeviceLibrary/.version)" ]; then
@@ -41,8 +44,11 @@ jobs:
 
           echo "[*] version.lock.txt is not equal to AppleMobileDeviceLibrary/.version"
           echo "UPDATE_NEEDED=true" >> $GITHUB_ENV
+
+          rm -f version.lock.txt
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Prepare Release
         if: env.UPDATE_NEEDED == 'true'
         run: |
@@ -59,11 +65,13 @@ jobs:
           ls -l *.zip
 
           ./Scripts/action.build.final.spm.sh $STORAGE_RELEASE_TAG ${{ github.repository }}
+
       - name: GitHub Commit & Push
         if: env.UPDATE_NEEDED == 'true'
         uses: actions-js/push@v1.4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Make Release
         if: env.UPDATE_NEEDED == 'true'
         uses: softprops/action-gh-release@v0.1.15
@@ -76,6 +84,7 @@ jobs:
           prerelease: false
           files: |
             version.lock.txt
+
       - name: Make Storage Release
         if: env.UPDATE_NEEDED == 'true'
         uses: softprops/action-gh-release@v0.1.15

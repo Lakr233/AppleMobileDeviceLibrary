@@ -13,14 +13,17 @@ CompileFramework:
   stage: CompileFramework
   script:
     - brew install libtool autoconf automake pkgconfig coreutils bash zip swiftformat
+    - /usr/sbin/softwareupdate --install-rosetta --agree-to-license
     - ./Scripts/build.sh clean
     - mv build/build.spm/ AppleMobileDeviceLibrary
     - mv build/build.binpack/binpack.tar .
+    - cat binpack.tar | gzip > binpack.tar.gz
+    - rm binpack.tar
     - mv src.version AppleMobileDeviceLibrary/.version
   artifacts:
     paths:
       - AppleMobileDeviceLibrary
-      - binpack.tar
+      - binpack.tar.gz
 
 TestFrameworkBuild:
   tags:

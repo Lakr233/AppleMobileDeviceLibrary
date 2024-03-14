@@ -15,6 +15,7 @@ jobs:
       - name: Build Artifacts
         run: |
           brew install libtool autoconf automake pkgconfig coreutils bash zip swiftformat
+          /usr/sbin/softwareupdate --install-rosetta --agree-to-license
           ./Scripts/build.sh clean
           mv build/build.spm/ AppleMobileDeviceLibrary
           mv build/build.binpack/binpack.tar .

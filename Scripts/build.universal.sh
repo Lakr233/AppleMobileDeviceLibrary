@@ -29,7 +29,13 @@ do
     PREFIX=$WORKING_DIR/build.$TARGET_ARCH
     rm -rf $PREFIX || true
     mkdir -p $PREFIX || true
-    arch -$TARGET_ARCH $SCRIPT_DIR/build.single.static.sh $PREFIX $WORKING_DIR 1>/dev/null
+    echo "[*] $SCRIPT_DIR/build.single.static.sh"
+    echo "    =================================="
+    echo "    $PREFIX"
+    echo "    $WORKING_DIR"
+    echo "    $TARGET_ARCH"
+    echo "    =================================="
+    $SCRIPT_DIR/build.single.static.sh $PREFIX $WORKING_DIR $TARGET_ARCH 1>/dev/null
 done
 
 OUTPUT_DIR=$WORKING_DIR/build

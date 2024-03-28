@@ -24,10 +24,10 @@ let package = Package(
             "libusbmuxd",
             "OpenSSL",
         ]),
-        .binaryTarget(name: "libimobiledevice", url: "https://github.com/Lakr233/AppleMobileDeviceLibrary/releases/download/storage.2A2044AC-D998-45A8-9A74-9E51BFF5363E/libimobiledevice.xcframework.zip", checksum: "a1239b507d5526e3261e7ea91c1c3e233ff8c7b2c5d55aecb24ce85c5e5eb38e"),
-        .binaryTarget(name: "libimobiledevice_glue", url: "https://github.com/Lakr233/AppleMobileDeviceLibrary/releases/download/storage.2A2044AC-D998-45A8-9A74-9E51BFF5363E/libimobiledevice_glue.xcframework.zip", checksum: "8a18ab63dd6cfc03d75e1dc116c9191cb7674bc7f2dab0fe915f89d36aa8fc16"),
-        .binaryTarget(name: "libplist", url: "https://github.com/Lakr233/AppleMobileDeviceLibrary/releases/download/storage.2A2044AC-D998-45A8-9A74-9E51BFF5363E/libplist.xcframework.zip", checksum: "9767b681977e2eaa21b94673811ca463e4789967b99cda534c7077ad250375c7"),
-        .binaryTarget(name: "libusbmuxd", url: "https://github.com/Lakr233/AppleMobileDeviceLibrary/releases/download/storage.2A2044AC-D998-45A8-9A74-9E51BFF5363E/libusbmuxd.xcframework.zip", checksum: "a5c91832a11898f9cbdee98c3cdb7dc7f2c1e8d375b29b359b10f75eef157b47"),
+        .binaryTarget(name: "libimobiledevice", url: "https://github.com/Lakr233/AppleMobileDeviceLibrary/releases/download/storage.A02AF743-FF93-4C4D-9A0E-99AD6A33ECC9/libimobiledevice.xcframework.zip", checksum: "b19dce95c6562651495686ba3a93383ba661ca20a876f9f2fed607a930132e29"),
+        .binaryTarget(name: "libimobiledevice_glue", url: "https://github.com/Lakr233/AppleMobileDeviceLibrary/releases/download/storage.A02AF743-FF93-4C4D-9A0E-99AD6A33ECC9/libimobiledevice_glue.xcframework.zip", checksum: "50868caaff1546edf6c4a3f0bed1b3af1e6eb8e4e46f5dfc844c33e3b677d118"),
+        .binaryTarget(name: "libplist", url: "https://github.com/Lakr233/AppleMobileDeviceLibrary/releases/download/storage.A02AF743-FF93-4C4D-9A0E-99AD6A33ECC9/libplist.xcframework.zip", checksum: "773fd2dea3424f19fe9b0479a01dd2037bffd26fbbb6133db7ea888aecaead00"),
+        .binaryTarget(name: "libusbmuxd", url: "https://github.com/Lakr233/AppleMobileDeviceLibrary/releases/download/storage.A02AF743-FF93-4C4D-9A0E-99AD6A33ECC9/libusbmuxd.xcframework.zip", checksum: "116d6c33ee0367025424fd493f4430425c35d0d82b3c5d18acea4b1d50a66340"),
     ]
 )
 

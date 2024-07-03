@@ -46,6 +46,15 @@ make -j$(nproc)
 make install
 popd
 
+git clone https://github.com/libimobiledevice/libtatsu || true
+pushd libtatsu
+git clean -fdx
+git reset --hard
+./autogen.sh --prefix=$BUILD_PREFIX --enable-shared=no --enable-static=yes
+make -j$(nproc)
+make install
+popd
+
 git clone https://github.com/libimobiledevice/libimobiledevice-glue || true
 pushd libimobiledevice-glue
 git clean -fdx

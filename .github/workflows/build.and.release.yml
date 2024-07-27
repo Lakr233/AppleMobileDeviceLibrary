@@ -99,6 +99,7 @@ jobs:
           files: |
             version.lock.txt
             libusbmuxd.xcframework.zip
+            libtatsu.xcframework.zip
             libimobiledevice_glue.xcframework.zip
             libimobiledevice.xcframework.zip
             libplist.xcframework.zip

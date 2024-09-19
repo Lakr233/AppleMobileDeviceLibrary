@@ -30,56 +30,34 @@ export LDFLAGS="-mmacosx-version-min=10.13 -arch $ARCH"
 
 git clone https://github.com/openssl/openssl || true
 pushd openssl
-git clean -fdx
+git clean -fdx -f
 git reset --hard
 git checkout $(wget -q -O- https://api.github.com/repos/openssl/openssl/releases/latest | jq -r '.tag_name')
 ./config darwin64-$ARCH-cc --prefix=$BUILD_PREFIX -no-shared no-tests 
 make -j$(nproc)
 make install_sw
 
-git clone https://github.com/libimobiledevice/libplist || true
-pushd libplist
-git clean -fdx
-git reset --hard
-./autogen.sh --prefix=$BUILD_PREFIX --enable-shared=no --enable-static=yes
-make -j$(nproc)
-make install
-popd
 
-git clone https://github.com/libimobiledevice/libtatsu || true
-pushd libtatsu
-git clean -fdx
-git reset --hard
-./autogen.sh --prefix=$BUILD_PREFIX --enable-shared=no --enable-static=yes
-make -j$(nproc)
-make install
-popd
+GIT_REPOSITORY_LIST=(
+    "https://github.com/libimobiledevice/libplist"
+    "https://github.com/libimobiledevice/libtatsu"
+    "https://github.com/libimobiledevice/libimobiledevice-glue"
+    "https://github.com/libimobiledevice/libusbmuxd"
+    "https://github.com/libimobiledevice/libimobiledevice"
+    "https://github.com/libimobiledevice/ideviceinstaller"
+    "https://github.com/libimobiledevice/libideviceactivation"
+)
 
-git clone https://github.com/libimobiledevice/libimobiledevice-glue || true
-pushd libimobiledevice-glue
-git clean -fdx
-git reset --hard
-./autogen.sh --prefix=$BUILD_PREFIX --enable-shared=no --enable-static=yes
-make -j$(nproc)
-make install
-popd
-
-git clone https://github.com/libimobiledevice/libusbmuxd || true
-pushd libusbmuxd
-git clean -fdx
-git reset --hard
-./autogen.sh --prefix=$BUILD_PREFIX --enable-shared=no --enable-static=yes
-make -j$(nproc)
-make install
-popd
-
-git clone https://github.com/libimobiledevice/libimobiledevice || true
-pushd libimobiledevice
-git clean -fdx
-git reset --hard
-./autogen.sh --prefix=$BUILD_PREFIX --enable-shared=no --enable-static=yes
-make -j$(nproc)
-make install
-popd
+for GIT_REPOSITORY in "${GIT_REPOSITORY_LIST[@]}"; do
+    DIRNAME=$(basename $GIT_REPOSITORY)
+    git clone $GIT_REPOSITORY $DIRNAME || true
+    pushd $DIRNAME
+    git clean -fdx -f
+    git reset --hard
+    ./autogen.sh --prefix=$BUILD_PREFIX --enable-shared=no --enable-static=yes
+    make -j$(nproc)
+    make install
+    popd
+done
 
 echo "[*] done $(basename $0)"

@@ -5,7 +5,7 @@ set -e
 cd $(dirname $0)
 
 if [ "$1" == "clean" ]; then
-    git clean -fdx
+    git clean -fdx -f
 fi
 
 ./check.sh

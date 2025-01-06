@@ -38,36 +38,12 @@ make -j$(nproc)
 make install_sw
 popd
 
-git clone https://github.com/nih-at/libzip || true
-pushd libzip
-git clean -fdx -f
-git reset --hard
-git checkout $(wget -q -O- https://api.github.com/repos/nih-at/libzip/releases/latest | jq -r '.tag_name')
-mkdir build
-pushd build
-cmake .. \
-    -DBUILD_SHARED_LIBS=OFF \
-    -DCMAKE_INSTALL_PREFIX=$BUILD_PREFIX \
-    -DENABLE_ZSTD=OFF \
-    -DBUILD_TOOLS=OFF \
-    -DBUILD_REGRESS=OFF \
-    -DBUILD_OSSFUZZ=OFF \
-    -DBUILD_EXAMPLES=OFF \
-    -DBUILD_DOC=OFF \
-    -DCMAKE_OSX_ARCHITECTURES=$ARCH \
-    -DCMAKE_SYSTEM_NAME=Darwin
-make -j$(nproc)
-make install
-popd
-popd
-
 GIT_REPOSITORY_LIST=(
     "https://github.com/libimobiledevice/libplist"
     "https://github.com/libimobiledevice/libtatsu"
     "https://github.com/libimobiledevice/libimobiledevice-glue"
     "https://github.com/libimobiledevice/libusbmuxd"
     "https://github.com/libimobiledevice/libimobiledevice"
-    "https://github.com/libimobiledevice/ideviceinstaller"
     "https://github.com/libimobiledevice/libideviceactivation"
 )
 
@@ -77,7 +53,10 @@ for GIT_REPOSITORY in "${GIT_REPOSITORY_LIST[@]}"; do
     pushd $DIRNAME
     git clean -fdx -f
     git reset --hard
-    ./autogen.sh --prefix=$BUILD_PREFIX --enable-shared=no --enable-static=yes
+    ./autogen.sh --prefix=$BUILD_PREFIX \
+        --enable-shared=no \
+        --enable-static=yes \
+        --without-cython
     make -j$(nproc)
     make install
     popd

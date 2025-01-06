@@ -14,7 +14,8 @@ jobs:
 
       - name: Build Artifacts
         run: |
-          brew install libtool autoconf automake pkgconfig coreutils bash zip swiftformat
+          brew install libtool autoconf automake pkgconfig coreutils bash zip swiftformat libzip
+          export PATH="$PATH:/opt/homebrew/bin:/opt/homebrew/sbin"
           /usr/sbin/softwareupdate --install-rosetta --agree-to-license
           ./Scripts/build.sh clean
           mv build/build.spm/ AppleMobileDeviceLibrary

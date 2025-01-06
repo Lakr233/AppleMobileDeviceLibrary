@@ -36,7 +36,30 @@ git checkout $(wget -q -O- https://api.github.com/repos/openssl/openssl/releases
 ./config darwin64-$ARCH-cc --prefix=$BUILD_PREFIX -no-shared no-tests 
 make -j$(nproc)
 make install_sw
+popd
 
+git clone https://github.com/nih-at/libzip || true
+pushd libzip
+git clean -fdx -f
+git reset --hard
+git checkout $(wget -q -O- https://api.github.com/repos/nih-at/libzip/releases/latest | jq -r '.tag_name')
+mkdir build
+pushd build
+cmake .. \
+    -DBUILD_SHARED_LIBS=OFF \
+    -DCMAKE_INSTALL_PREFIX=$BUILD_PREFIX \
+    -DENABLE_ZSTD=OFF \
+    -DBUILD_TOOLS=OFF \
+    -DBUILD_REGRESS=OFF \
+    -DBUILD_OSSFUZZ=OFF \
+    -DBUILD_EXAMPLES=OFF \
+    -DBUILD_DOC=OFF \
+    -DCMAKE_OSX_ARCHITECTURES=$ARCH \
+    -DCMAKE_SYSTEM_NAME=Darwin
+make -j$(nproc)
+make install
+popd
+popd
 
 GIT_REPOSITORY_LIST=(
     "https://github.com/libimobiledevice/libplist"

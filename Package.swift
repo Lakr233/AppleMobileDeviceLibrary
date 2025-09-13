@@ -25,11 +25,11 @@ let package = Package(
             "libtatsu",
             "OpenSSL",
         ]),
-        .binaryTarget(name: "libimobiledevice", url: "https://github.com/Lakr233/AppleMobileDeviceLibrary/releases/download/storage.68FE75F7-0591-4640-87EB-0F00B91F734E/libimobiledevice.xcframework.zip", checksum: "dc5dcd4c8395945a3e6f739447629dfd974d8fe620fb517d0878fb0970b238a2"),
-        .binaryTarget(name: "libimobiledevice_glue", url: "https://github.com/Lakr233/AppleMobileDeviceLibrary/releases/download/storage.68FE75F7-0591-4640-87EB-0F00B91F734E/libimobiledevice_glue.xcframework.zip", checksum: "b8742b847d7139f604de2877a7c10ee904ef10f1e13ba10eccd0f12326bea1f4"),
-        .binaryTarget(name: "libplist", url: "https://github.com/Lakr233/AppleMobileDeviceLibrary/releases/download/storage.68FE75F7-0591-4640-87EB-0F00B91F734E/libplist.xcframework.zip", checksum: "02f6a152d31171c0b1f23d446d8623d876300a7444ee7fdeec96cc5499c950dd"),
-        .binaryTarget(name: "libtatsu", url: "https://github.com/Lakr233/AppleMobileDeviceLibrary/releases/download/storage.68FE75F7-0591-4640-87EB-0F00B91F734E/libtatsu.xcframework.zip", checksum: "e9c3e505ee22c9043cf098e0cf90dc00cdb911570d2c93d1487aa530ac1bc9b3"),
-        .binaryTarget(name: "libusbmuxd", url: "https://github.com/Lakr233/AppleMobileDeviceLibrary/releases/download/storage.68FE75F7-0591-4640-87EB-0F00B91F734E/libusbmuxd.xcframework.zip", checksum: "2baa68c4369554cea96a8220fe503623f68a38253ac0cdaa908efae136506aa0"),
+        .binaryTarget(name: "libimobiledevice", url: "https://github.com/Lakr233/AppleMobileDeviceLibrary/releases/download/storage.812BA0EF-545A-4854-80C1-F711C4142CFF/libimobiledevice.xcframework.zip", checksum: "0a2cbdabfb1952b9fa614c44b1db72941d2897886a12bff4f74dd7c1c6f4de53"),
+        .binaryTarget(name: "libimobiledevice_glue", url: "https://github.com/Lakr233/AppleMobileDeviceLibrary/releases/download/storage.812BA0EF-545A-4854-80C1-F711C4142CFF/libimobiledevice_glue.xcframework.zip", checksum: "0b66ada24f20f49ff8786aadbc67037dae2c91e882a31095769954627d9dc1f4"),
+        .binaryTarget(name: "libplist", url: "https://github.com/Lakr233/AppleMobileDeviceLibrary/releases/download/storage.812BA0EF-545A-4854-80C1-F711C4142CFF/libplist.xcframework.zip", checksum: "a3045640d90551613ca4af00e582138e95ce385bb21a8cb034d5879009af0d31"),
+        .binaryTarget(name: "libtatsu", url: "https://github.com/Lakr233/AppleMobileDeviceLibrary/releases/download/storage.812BA0EF-545A-4854-80C1-F711C4142CFF/libtatsu.xcframework.zip", checksum: "1cf0b7e64550de02293b7ad8968224623b6c84717e2a01b53fc5fd2bb382a155"),
+        .binaryTarget(name: "libusbmuxd", url: "https://github.com/Lakr233/AppleMobileDeviceLibrary/releases/download/storage.812BA0EF-545A-4854-80C1-F711C4142CFF/libusbmuxd.xcframework.zip", checksum: "05d2d54ed63a5992a57c873b264ffc45b8c0b0a96c440769faef272023b60964"),
     ]
 )
 

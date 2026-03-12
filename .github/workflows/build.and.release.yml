@@ -76,6 +76,7 @@ jobs:
         uses: actions-js/push@v1.4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref_name }}
 
       - name: Make Release
         if: env.UPDATE_NEEDED == 'true'

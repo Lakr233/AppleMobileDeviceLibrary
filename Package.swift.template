@@ -12,6 +12,30 @@ let package = Package(
             name: "AppleMobileDeviceLibrary",
             targets: ["AppleMobileDeviceLibrary"]
         ),
+        .library(
+            name: "libimobiledevice",
+            targets: ["libimobiledevice"]
+        ),
+        .library(
+            name: "libimobiledevice_glue",
+            targets: ["libimobiledevice_glue"]
+        ),
+        .library(
+            name: "libirecovery",
+            targets: ["libirecovery"]
+        ),
+        .library(
+            name: "libplist",
+            targets: ["libplist"]
+        ),
+        .library(
+            name: "libtatsu",
+            targets: ["libtatsu"]
+        ),
+        .library(
+            name: "libusbmuxd",
+            targets: ["libusbmuxd"]
+        ),
     ],
     dependencies: [
         .package(name: "OpenSSL", url: "https://github.com/Lakr233/openssl-spm.git", from: "3.2.0"),
@@ -20,6 +44,7 @@ let package = Package(
         .target(name: "AppleMobileDeviceLibrary", dependencies: [
             "libimobiledevice",
             "libimobiledevice_glue",
+            "libirecovery",
             "libplist",
             "libusbmuxd",
             "libtatsu",
@@ -27,9 +52,9 @@ let package = Package(
         ]),
         .binaryTarget(name: "libimobiledevice", url: "https://github.com/__REPO__/releases/download/__TAG__/libimobiledevice.xcframework.zip", checksum: "__CHECKSUM_libimobiledevice__"),
         .binaryTarget(name: "libimobiledevice_glue", url: "https://github.com/__REPO__/releases/download/__TAG__/libimobiledevice_glue.xcframework.zip", checksum: "__CHECKSUM_libimobiledevice_glue__"),
+        .binaryTarget(name: "libirecovery", url: "https://github.com/__REPO__/releases/download/__TAG__/libirecovery.xcframework.zip", checksum: "__CHECKSUM_libirecovery__"),
         .binaryTarget(name: "libplist", url: "https://github.com/__REPO__/releases/download/__TAG__/libplist.xcframework.zip", checksum: "__CHECKSUM_libplist__"),
         .binaryTarget(name: "libtatsu", url: "https://github.com/__REPO__/releases/download/__TAG__/libtatsu.xcframework.zip", checksum: "__CHECKSUM_libtatsu__"),
         .binaryTarget(name: "libusbmuxd", url: "https://github.com/__REPO__/releases/download/__TAG__/libusbmuxd.xcframework.zip", checksum: "__CHECKSUM_libusbmuxd__"),
     ]
 )
-

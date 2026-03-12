@@ -21,6 +21,7 @@ sed -i "" "s|__TAG__|$RELEASE_TAG|g" Package.swift
 
 sed -i "" "s|__CHECKSUM_libimobiledevice__|$(shasum -a 256 ./libimobiledevice.xcframework.zip | awk '{print $1}')|g" Package.swift
 sed -i "" "s|__CHECKSUM_libimobiledevice_glue__|$(shasum -a 256 ./libimobiledevice_glue.xcframework.zip | awk '{print $1}')|g" Package.swift
+sed -i "" "s|__CHECKSUM_libirecovery__|$(shasum -a 256 ./libirecovery.xcframework.zip | awk '{print $1}')|g" Package.swift
 sed -i "" "s|__CHECKSUM_libplist__|$(shasum -a 256 ./libplist.xcframework.zip | awk '{print $1}')|g" Package.swift
 sed -i "" "s|__CHECKSUM_libssl__|$(shasum -a 256 ./libssl.xcframework.zip | awk '{print $1}')|g" Package.swift
 sed -i "" "s|__CHECKSUM_libusbmuxd__|$(shasum -a 256 ./libusbmuxd.xcframework.zip | awk '{print $1}')|g" Package.swift

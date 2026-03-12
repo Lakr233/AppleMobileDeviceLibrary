@@ -68,9 +68,7 @@ for GIT_REPOSITORY in "${GIT_REPOSITORY_LIST[@]}"; do
         --enable-static=yes
     )
 
-    if [ "$DIRNAME" = "libirecovery" ]; then
-        CONFIGURE_ARGS+=(--with-tools=no)
-    else
+    if [ "$DIRNAME" != "libirecovery" ]; then
         CONFIGURE_ARGS+=(--without-cython)
     fi
 

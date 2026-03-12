@@ -1,6 +1,9 @@
 name: Fetch Update and Publish Release
 
 on:
+  push:
+    branches:
+      - vphone-main
   workflow_dispatch:
   schedule:
     - cron: "4 5 * * *"
@@ -99,6 +102,7 @@ jobs:
           prerelease: false
           files: |
             version.lock.txt
+            libirecovery.xcframework.zip
             libusbmuxd.xcframework.zip
             libtatsu.xcframework.zip
             libimobiledevice_glue.xcframework.zip

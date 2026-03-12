@@ -1,0 +1,24 @@
+From 48bf9726fc2709170bce766f33a8b1c3ec30cc66 Mon Sep 17 00:00:00 2001
+From: Lakr <git@qaq.wiki>
+Date: Sat, 28 Feb 2026 01:37:17 +0900
+Subject: [PATCH] Add Private Cloud Compute Research Environment model
+
+---
+ src/libirecovery.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/src/libirecovery.c b/src/libirecovery.c
+index bf9a0d6..1323891 100644
+--- a/src/libirecovery.c
++++ b/src/libirecovery.c
+@@ -216,6 +216,8 @@ static struct irecv_device irecv_devices[] = {
+ 	{ "iPhone17,3",	 "d47ap",    0x08, 0x8140, "iPhone 16" },
+ 	{ "iPhone17,4",	 "d48ap",    0x0A, 0x8140, "iPhone 16 Plus" },
+ 	{ "iPhone17,5",	 "v59ap",    0x04, 0x8140, "iPhone 16e" },
++	{ "PrivateCloudCompute1,1", "vresearch101ap", 0x90, 0x6050, "Private Cloud Compute Research Environment" },
++	{ "PrivateCloudCompute1,2", "vresearch101devap", 0x90, 0x6050, "Private Cloud Compute Research Environment" },
+ 	{ "iPhone18,1",  "v53ap",    0x0C, 0x8150, "iPhone 17 Pro" },
+ 	{ "iPhone18,2",  "v54ap",    0x0E, 0x8150, "iPhone 17 Pro Max" },
+ 	{ "iPhone18,3",  "v57ap",    0x08, 0x8150, "iPhone 17" },
+-- 
+2.39.5 (Apple Git-154)

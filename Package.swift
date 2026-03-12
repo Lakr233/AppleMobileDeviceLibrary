@@ -12,6 +12,26 @@ let package = Package(
             name: "AppleMobileDeviceLibrary",
             targets: ["AppleMobileDeviceLibrary"]
         ),
+        .library(
+            name: "libimobiledevice",
+            targets: ["libimobiledevice"]
+        ),
+        .library(
+            name: "libimobiledevice_glue",
+            targets: ["libimobiledevice_glue"]
+        ),
+        .library(
+            name: "libplist",
+            targets: ["libplist"]
+        ),
+        .library(
+            name: "libtatsu",
+            targets: ["libtatsu"]
+        ),
+        .library(
+            name: "libusbmuxd",
+            targets: ["libusbmuxd"]
+        ),
     ],
     dependencies: [
         .package(name: "OpenSSL", url: "https://github.com/Lakr233/openssl-spm.git", from: "3.2.0"),
@@ -32,4 +52,3 @@ let package = Package(
         .binaryTarget(name: "libusbmuxd", url: "https://github.com/Lakr233/AppleMobileDeviceLibrary/releases/download/storage.63539F36-93E6-4925-BF7E-815BB5140942/libusbmuxd.xcframework.zip", checksum: "37aeaf660410f663e7196ef245a0c8c541f9915f692c1b11599ef1bdb8dbc7c9"),
     ]
 )
-

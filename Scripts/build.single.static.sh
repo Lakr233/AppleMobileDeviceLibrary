@@ -2,6 +2,9 @@
 
 set -e
 
+SCRIPT_DIR=$(cd "$(dirname "$0")" && pwd)
+PATCH_DIR="$SCRIPT_DIR/../Patches"
+
 BUILD_PREFIX=$1 # install to this dir
 WORKING_DIR=$2  # store repos
 TARGET_ARCH=$3  # build for this arch
@@ -42,6 +45,7 @@ GIT_REPOSITORY_LIST=(
     "https://github.com/libimobiledevice/libplist"
     "https://github.com/libimobiledevice/libtatsu"
     "https://github.com/libimobiledevice/libimobiledevice-glue"
+    "https://github.com/libimobiledevice/libirecovery"
     "https://github.com/libimobiledevice/libusbmuxd"
     "https://github.com/libimobiledevice/libimobiledevice"
     "https://github.com/libimobiledevice/libideviceactivation"
@@ -53,10 +57,24 @@ for GIT_REPOSITORY in "${GIT_REPOSITORY_LIST[@]}"; do
     pushd $DIRNAME
     git clean -fdx -f
     git reset --hard
-    ./autogen.sh --prefix=$BUILD_PREFIX \
-        --enable-shared=no \
-        --enable-static=yes \
-        --without-cython
+
+    if [ "$DIRNAME" = "libirecovery" ] && [ -f "$PATCH_DIR/libirecovery-pcc.patch" ]; then
+        git apply --3way "$PATCH_DIR/libirecovery-pcc.patch"
+    fi
+
+    CONFIGURE_ARGS=(
+        --prefix=$BUILD_PREFIX
+        --enable-shared=no
+        --enable-static=yes
+    )
+
+    if [ "$DIRNAME" = "libirecovery" ]; then
+        CONFIGURE_ARGS+=(--with-tools=no)
+    else
+        CONFIGURE_ARGS+=(--without-cython)
+    fi
+
+    ./autogen.sh "${CONFIGURE_ARGS[@]}"
     make -j$(nproc)
     make install
     popd

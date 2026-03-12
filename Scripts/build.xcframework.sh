@@ -26,6 +26,7 @@ FRAMEWORK_DEFS["libssl"]="openssl|libcrypto.a libssl.a"
 FRAMEWORK_DEFS["libplist"]="plist/plist.h|libplist-2.0.a"
 FRAMEWORK_DEFS["libtatsu"]="libtatsu/tatsu.h libtatsu/tss.h|libtatsu.a"
 FRAMEWORK_DEFS["libimobiledevice_glue"]="libimobiledevice-glue|libimobiledevice-glue-1.0.a"
+FRAMEWORK_DEFS["libirecovery"]="libirecovery.h|libirecovery-1.0.a"
 FRAMEWORK_DEFS["libusbmuxd"]="usbmuxd-proto.h usbmuxd.h|libusbmuxd-2.0.a"
 FRAMEWORK_DEFS["libimobiledevice"]="libimobiledevice|libimobiledevice-1.0.a"
 
@@ -34,6 +35,7 @@ BUILD_SEQUENCE=(
     libplist
     libtatsu
     libimobiledevice_glue
+    libirecovery
     libusbmuxd
     libimobiledevice
 )

@@ -1,0 +1,2 @@
+# Preserve the exact upstream notice bytes verified by the fixture manifest.
+Tests/Fixtures/notices/blobs/* -text -diff

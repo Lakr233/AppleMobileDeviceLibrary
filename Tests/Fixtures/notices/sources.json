@@ -1,0 +1,183 @@
+{
+  "schema_version": 1,
+  "purpose": "Pinned upstream notice bytes used by synthetic Git/build fixtures; these commits are not asserted to describe older published binaries.",
+  "sources": [
+    {
+      "name": "openssl",
+      "repo": "openssl/openssl",
+      "revision": "2f4e3a5fec05394068cfa7379890ab552483a8a6",
+      "tree": "c5418fec4da52e7ac2c89f593b9ecb260c4b3fee",
+      "files": [
+        {
+          "mode": "100644",
+          "path": "AUTHORS.md",
+          "sha": "5b036a0d8358167c87c7fa275cc671cd222dcce6",
+          "sha256": "b9f638dfc06b59c2d3b808186c3b30f713805a5db390f5b77b1703ac58acb83e"
+        },
+        {
+          "mode": "100644",
+          "path": "LICENSE.txt",
+          "sha": "49cc83d2ee29d13453188217f0e4edd70c7f842f",
+          "sha256": "7d5450cb2d142651b8afa315b5f238efc805dad827d91ba367d8516bc9d49e7a"
+        },
+        {
+          "mode": "100644",
+          "path": "external/perl/Text-Template-1.56/LICENSE",
+          "sha": "718b860a237914110a45501904390302a10e75c8",
+          "sha256": "9837f05336ef3cbacb6a96e1672a0426d81ad01191f214b8d48e22ca62338181"
+        }
+      ],
+      "truncated": false
+    },
+    {
+      "name": "libplist",
+      "repo": "libimobiledevice/libplist",
+      "revision": "3cfe22475244cc1e924b6fd189234c130d6c5914",
+      "tree": "46e0e4af9d761e3183bccbedc956cf58396dad4c",
+      "files": [
+        {
+          "mode": "100644",
+          "path": "AUTHORS",
+          "sha": "22d6a7dae5c9b9896fd760120329ed98f4a0ba58",
+          "sha256": "9ee5828311bc47160791e9fc1574cb356d9d6a661b1d194a97cd254d58c9d3b9"
+        },
+        {
+          "mode": "100644",
+          "path": "COPYING",
+          "sha": "08ddefd0401d1d29e6c07b629344ce1675e6b095",
+          "sha256": "7619c753cac95d4740220223bde48a032606fcaccde5e546f9bc444c81ab356d"
+        },
+        {
+          "mode": "100644",
+          "path": "COPYING.LESSER",
+          "sha": "732811e4f1faf71870b7350f211b26e00d7bfbe9",
+          "sha256": "e237fa56668030e928551ddd60f05df5fe957f75eab874bbd017e085ed722e7c"
+        },
+        {
+          "mode": "100644",
+          "path": "libcnary/COPYING",
+          "sha": "732811e4f1faf71870b7350f211b26e00d7bfbe9",
+          "sha256": "e237fa56668030e928551ddd60f05df5fe957f75eab874bbd017e085ed722e7c"
+        }
+      ],
+      "truncated": false
+    },
+    {
+      "name": "libtatsu",
+      "repo": "libimobiledevice/libtatsu",
+      "revision": "d8928042bcbb7048bc87a994d3e84c29eacf2f32",
+      "tree": "0345b9e08d38a2014005309c98b73ffa3c268b57",
+      "files": [
+        {
+          "mode": "100644",
+          "path": "COPYING",
+          "sha": "732811e4f1faf71870b7350f211b26e00d7bfbe9",
+          "sha256": "e237fa56668030e928551ddd60f05df5fe957f75eab874bbd017e085ed722e7c"
+        }
+      ],
+      "truncated": false
+    },
+    {
+      "name": "libimobiledevice-glue",
+      "repo": "libimobiledevice/libimobiledevice-glue",
+      "revision": "10ddafa16458a012bcbd3e83a6ab36a032dc84d8",
+      "tree": "a99da8583618e4d2e16cbf9b2b651d08da896f69",
+      "files": [
+        {
+          "mode": "100644",
+          "path": "COPYING",
+          "sha": "732811e4f1faf71870b7350f211b26e00d7bfbe9",
+          "sha256": "e237fa56668030e928551ddd60f05df5fe957f75eab874bbd017e085ed722e7c"
+        }
+      ],
+      "truncated": false
+    },
+    {
+      "name": "libusbmuxd",
+      "repo": "libimobiledevice/libusbmuxd",
+      "revision": "93eb168bf6b07472d17781328c21df0c60300524",
+      "tree": "495e76e874c7e46dd4f0b03681e85edf89e20680",
+      "files": [
+        {
+          "mode": "100644",
+          "path": "AUTHORS",
+          "sha": "459a8254ed7ebd8c9bd70ccbce19ba5e514fcb38",
+          "sha256": "f76632e73560fb36850d2d70cf72960240a82d8c527022a4165370f8a81fa9fc"
+        },
+        {
+          "mode": "100644",
+          "path": "COPYING",
+          "sha": "732811e4f1faf71870b7350f211b26e00d7bfbe9",
+          "sha256": "e237fa56668030e928551ddd60f05df5fe957f75eab874bbd017e085ed722e7c"
+        }
+      ],
+      "truncated": false
+    },
+    {
+      "name": "libimobiledevice",
+      "repo": "libimobiledevice/libimobiledevice",
+      "revision": "fa0f79190142bc309307967c058f89c1b36eb6b8",
+      "tree": "dd6c02495c59e73dcb8620b99673f17409a66814",
+      "files": [
+        {
+          "mode": "100644",
+          "path": "3rd_party/ed25519/LICENSE",
+          "sha": "c1503f912112217bc5a9c727e7e5889bd5aea998",
+          "sha256": "f68d76b9c1c2271422e55134ea94cf71f2ac3fc3ed6a7ec6b83a1a0538753214"
+        },
+        {
+          "mode": "100644",
+          "path": "3rd_party/libsrp6a-sha512/LICENSE",
+          "sha": "7f706408e0cb1f10013d21453ff6b1a216ca1d72",
+          "sha256": "6b420542f5295bd85e285a2142eca27be4f700e4bd1648450c07be4f82548a85"
+        },
+        {
+          "mode": "100644",
+          "path": "AUTHORS",
+          "sha": "7c2b0e20c291da929e19aaa1fd5272dfaa6c0ba7",
+          "sha256": "4920ad8427644a779b6d12a51121d69cdb609f26fdfff322c22efa5de7ffb584"
+        },
+        {
+          "mode": "100644",
+          "path": "COPYING",
+          "sha": "08ddefd0401d1d29e6c07b629344ce1675e6b095",
+          "sha256": "7619c753cac95d4740220223bde48a032606fcaccde5e546f9bc444c81ab356d"
+        },
+        {
+          "mode": "100644",
+          "path": "COPYING.LESSER",
+          "sha": "732811e4f1faf71870b7350f211b26e00d7bfbe9",
+          "sha256": "e237fa56668030e928551ddd60f05df5fe957f75eab874bbd017e085ed722e7c"
+        }
+      ],
+      "truncated": false
+    },
+    {
+      "name": "libideviceactivation",
+      "repo": "libimobiledevice/libideviceactivation",
+      "revision": "9ca1851a499854033bbaf5f1f7c9b13b93cc7c8e",
+      "tree": "b915bffd3a8a3ad62a6e18e3e69f851b83c21abb",
+      "files": [
+        {
+          "mode": "100644",
+          "path": "AUTHORS",
+          "sha": "7ddf33e452c6159d854e82872408fe6de7dd552a",
+          "sha256": "9909cf8156b449009afa0b8b6b0d555c429ffb765872302b8e5abb21eca67e32"
+        },
+        {
+          "mode": "100644",
+          "path": "COPYING",
+          "sha": "94a9ed024d3859793618152ea559a168bbcbb5e2",
+          "sha256": "8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903"
+        },
+        {
+          "mode": "100644",
+          "path": "COPYING.LESSER",
+          "sha": "732811e4f1faf71870b7350f211b26e00d7bfbe9",
+          "sha256": "e237fa56668030e928551ddd60f05df5fe957f75eab874bbd017e085ed722e7c"
+        }
+      ],
+      "truncated": false
+    }
+  ]
+}

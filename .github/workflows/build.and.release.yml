@@ -14,14 +14,19 @@ jobs:
 
       - name: Build Artifacts
         run: |
-          brew install libtool autoconf automake pkgconfig coreutils bash zip swiftformat
+          brew install libtool autoconf automake pkgconfig coreutils bash zip swiftformat jq
           export PATH="$PATH:/opt/homebrew/bin:/opt/homebrew/sbin"
           /usr/sbin/softwareupdate --install-rosetta --agree-to-license
           ./Scripts/build.sh clean
           mv build/build.spm/ AppleMobileDeviceLibrary
           mv build/build.binpack/binpack.tar .
           mv src.version AppleMobileDeviceLibrary/.version
+          rm -rf Licenses
+          cp -R AppleMobileDeviceLibrary/Licenses Licenses
+          zip -r9 Licenses.zip Licenses
+          ./Scripts/payload.notices.sh verify-zip Licenses.zip
           cat binpack.tar | gzip > binpack.tar.gz
+          ./Scripts/payload.notices.sh verify-tar binpack.tar.gz
 
       # now we have AppleMobileDeviceLibrary and binpack.tar.gz at the root of the repository
 
@@ -86,6 +91,7 @@ jobs:
           prerelease: false
           files: |
             version.lock.txt
+            Licenses.zip
 
       - name: Make Storage Release
         if: env.UPDATE_NEEDED == 'true'
@@ -106,3 +112,4 @@ jobs:
             libplist.xcframework.zip
             libssl.xcframework.zip
             binpack.tar.gz
+            Licenses.zip

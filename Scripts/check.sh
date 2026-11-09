@@ -13,12 +13,14 @@ REQUIRED_PACKAGES=(
     autoconf
     libtool
     wget
+    jq
+    unzip
 
     # brew install coreutils
     nproc
     sha256sum
 )
-for REQUIRED_PACKAGE in ${REQUIRED_PACKAGES[@]}; do
+for REQUIRED_PACKAGE in "${REQUIRED_PACKAGES[@]}"; do
     if ! command -v $REQUIRED_PACKAGE &> /dev/null; then
         echo "[!] $REQUIRED_PACKAGE is required"
         exit 1

@@ -24,7 +24,7 @@ TARGET_ARCHS=(
     x86_64
 )
 
-for TARGET_ARCH in ${TARGET_ARCHS[@]}
+for TARGET_ARCH in "${TARGET_ARCHS[@]}"
 do
     PREFIX=$WORKING_DIR/build.$TARGET_ARCH
     rm -rf $PREFIX || true
@@ -55,7 +55,7 @@ do
     RELATIVE_PATH=$(echo $FILE | sed "s|$BUILDER_ANCHOR_PREFIX||g")
 
     BINARY_LIST=()
-    for TARGET_ARCH in ${TARGET_ARCHS[@]}
+    for TARGET_ARCH in "${TARGET_ARCHS[@]}"
     do
         ARCH_PREFIX=$WORKING_DIR/build.$TARGET_ARCH
         BINARY_LIST+=($ARCH_PREFIX$RELATIVE_PATH)
@@ -63,7 +63,13 @@ do
 
     mkdir -p $(dirname $OUTPUT_DIR$RELATIVE_PATH) || true
     rm -rf $OUTPUT_DIR$RELATIVE_PATH || true
-    lipo -create ${BINARY_LIST[@]} -output $OUTPUT_DIR$RELATIVE_PATH
+    lipo -create "${BINARY_LIST[@]}" -output "$OUTPUT_DIR$RELATIVE_PATH"
 done
+
+NOTICE_PREFIXES=()
+for TARGET_ARCH in "${TARGET_ARCHS[@]}"; do
+    NOTICE_PREFIXES+=("$WORKING_DIR/build.$TARGET_ARCH")
+done
+"$SCRIPT_DIR/payload.notices.sh" merge "$OUTPUT_DIR" "${NOTICE_PREFIXES[@]}"
 
 echo "[*] done $(basename $0)"

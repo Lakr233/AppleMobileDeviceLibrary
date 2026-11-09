@@ -20,6 +20,7 @@ HEADER_SEARCH_DIR=$WORKING_DIR/build.arm64/include
 
 rm -rf $OUTPUT_DIR || true
 mkdir -p $OUTPUT_DIR || true
+"$SCRIPT_DIR/payload.notices.sh" copy "$INPUT_DIR" "$OUTPUT_DIR"
 
 declare -A FRAMEWORK_DEFS
 FRAMEWORK_DEFS["libssl"]="openssl|libcrypto.a libssl.a"
@@ -102,8 +103,11 @@ function build_xcframework() {
         -headers include \
         -output $TEMP_OUTPUT_XCFRAMEWORK
 
+    "$SCRIPT_DIR/payload.notices.sh" copy "$INPUT_DIR" "$TEMP_OUTPUT_XCFRAMEWORK"
+
     echo "[*] copying to output directory..."
     cp -r *.xcframework $OUTPUT_XCFRAMEWORK
+    "$SCRIPT_DIR/payload.notices.sh" verify "$OUTPUT_XCFRAMEWORK"
 
     popd > /dev/null
 }

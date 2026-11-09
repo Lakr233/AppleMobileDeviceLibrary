@@ -2,6 +2,8 @@
 
 set -e
 
+SCRIPT_DIR=$(cd "$(dirname "$0")" && pwd)
+
 BUILD_PREFIX=$1 # install to this dir
 WORKING_DIR=$2  # store repos
 TARGET_ARCH=$3  # build for this arch
@@ -33,9 +35,11 @@ pushd openssl
 git clean -fdx -f
 git reset --hard
 git checkout $(wget -q -O- https://api.github.com/repos/openssl/openssl/releases/latest | jq -r '.tag_name')
+"$SCRIPT_DIR/payload.notices.sh" capture "$BUILD_PREFIX" openssl "$PWD" https://github.com/openssl/openssl
 ./config darwin64-$ARCH-cc --prefix=$BUILD_PREFIX -no-shared no-tests 
 make -j$(nproc)
 make install_sw
+"$SCRIPT_DIR/payload.notices.sh" verify-source "$BUILD_PREFIX" openssl "$PWD" https://github.com/openssl/openssl
 popd
 
 GIT_REPOSITORY_LIST=(
@@ -53,13 +57,17 @@ for GIT_REPOSITORY in "${GIT_REPOSITORY_LIST[@]}"; do
     pushd $DIRNAME
     git clean -fdx -f
     git reset --hard
+    "$SCRIPT_DIR/payload.notices.sh" capture "$BUILD_PREFIX" "$DIRNAME" "$PWD" "$GIT_REPOSITORY"
     ./autogen.sh --prefix=$BUILD_PREFIX \
         --enable-shared=no \
         --enable-static=yes \
         --without-cython
     make -j$(nproc)
     make install
+    "$SCRIPT_DIR/payload.notices.sh" verify-source "$BUILD_PREFIX" "$DIRNAME" "$PWD" "$GIT_REPOSITORY"
     popd
 done
+
+"$SCRIPT_DIR/payload.notices.sh" verify "$BUILD_PREFIX"
 
 echo "[*] done $(basename $0)"

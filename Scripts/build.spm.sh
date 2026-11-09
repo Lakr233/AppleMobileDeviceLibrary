@@ -6,8 +6,9 @@ REUIQRED_TOOL=(
     "swift"
     "zip"
     "swiftformat"
+    "unzip"
 )
-for TOOL in ${REUIQRED_TOOL[@]}; do
+for TOOL in "${REUIQRED_TOOL[@]}"; do
     if ! command -v $TOOL &> /dev/null; then
         echo "error: $TOOL is required"
         exit 1
@@ -33,6 +34,7 @@ LIBRARY_NAME="AppleMobileDeviceLibrary"
 
 rm -rf $OUTPUT_DIR || true
 mkdir -p $OUTPUT_DIR || true
+"$SCRIPT_DIR/payload.notices.sh" copy "$INPUT_DIR" "$OUTPUT_DIR"
 
 cd $OUTPUT_DIR
 
@@ -70,8 +72,10 @@ echo "[*] sending frameworks to BinaryTargets..."
 pushd BinaryTargets > /dev/null
 
 for XCFRAMEWORK in $INPUT_DIR/*.xcframework; do
+    "$SCRIPT_DIR/payload.notices.sh" compare "$INPUT_DIR" "$XCFRAMEWORK"
     cp -r $XCFRAMEWORK .
     zip -r9 $(basename $XCFRAMEWORK).zip $(basename $XCFRAMEWORK) > /dev/null
+    "$SCRIPT_DIR/payload.notices.sh" verify-zip "$(basename "$XCFRAMEWORK").zip" "$(basename "$XCFRAMEWORK")"
     rm -rf $(basename $XCFRAMEWORK)
 done
 

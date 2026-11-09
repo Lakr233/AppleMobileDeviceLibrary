@@ -1,0 +1,3 @@
+The notice blobs are exact files from the upstream commits in `notices/sources.json`. Their Git blob IDs and SHA-256 digests are checked before use. The test Git interface returns these fixed source contexts and the native tools produce fixture binaries. This tests notice capture and archive transport without claiming a native build or provenance for an older published binary.
+
+`baseline-553a0bf` contains the original packaging scripts at `Lakr233/AppleMobileDeviceLibrary` commit `553a0bf1b55812b1a08c727b1a3084e88871343b`. The fixtures supply the same notices to both pipelines, then verify that these older scripts drop them while the current pipeline retains them.

@@ -12,12 +12,13 @@ CompileFramework:
     - xcode
   stage: CompileFramework
   script:
-    - brew install libtool autoconf automake pkgconfig coreutils bash zip swiftformat
+    - brew install libtool autoconf automake pkgconfig coreutils bash zip swiftformat jq
     - /usr/sbin/softwareupdate --install-rosetta --agree-to-license
     - ./Scripts/build.sh clean
     - mv build/build.spm/ AppleMobileDeviceLibrary
     - mv build/build.binpack/binpack.tar .
     - cat binpack.tar | gzip > binpack.tar.gz
+    - ./Scripts/payload.notices.sh verify-tar binpack.tar.gz
     - rm binpack.tar
     - mv src.version AppleMobileDeviceLibrary/.version
   artifacts:

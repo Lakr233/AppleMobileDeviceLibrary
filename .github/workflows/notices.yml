@@ -1,0 +1,17 @@
+name: Notice packaging fixtures
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  notices:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify source notices and packaging
+        run: bash Tests/payload-notices.sh

@@ -86,7 +86,7 @@ function build_xcframework() {
             continue
         fi
         if [[ $HEADER_FILE == "./include/"* ]]; then
-            HEADER_FILE=${HEADER_FILE:11}
+            HEADER_FILE=${HEADER_FILE#./include/}
         fi
         echo "    header \"../$HEADER_FILE\"" >> module.modulemap
     done
